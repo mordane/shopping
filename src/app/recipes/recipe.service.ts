@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Ingredient } from "../shared/ingredients.model";
+import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
 
 @Injectable({providedIn: 'root'})
@@ -27,7 +28,13 @@ export class RecipeService {
     new Recipe('Veggie Fritters', 'These veggie fritters with corn, chickpeas, and bell pepper are super easy to make, they are vegan', 'https://elavegan.com/wp-content/uploads/2019/02/vegan-veggie-fritters-with-corn-pepper-gluten-free-recipe-on-a-plate.jpg', [])
   ];
 
+  constructor(private shoppingListService: ShoppingListService) {}
+
   getRecipes(): Recipe[] {
     return this.recipes.slice();
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]): void {
+     this.shoppingListService.addIngredients(ingredients);
   }
  }

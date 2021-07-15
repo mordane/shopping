@@ -3,7 +3,7 @@ import { Ingredient } from "../shared/ingredients.model";
 
 @Injectable({providedIn: 'root'})
 export class ShoppingListService {
-  ingredientAdded = new EventEmitter<Ingredient>();
+  ingredientsChanged = new EventEmitter<Ingredient[]>();
 
   private ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
@@ -14,9 +14,15 @@ export class ShoppingListService {
     return this.ingredients.slice();
   }
 
-  AddIngredient(ingredient: Ingredient): void {
+  addIngredient(ingredient: Ingredient): void {
     this.ingredients.push(ingredient);
 
-    this.ingredientAdded.emit();
+    this.ingredientsChanged.emit(this.ingredients.slice());
+  }
+
+  addIngredients(ingredients: Ingredient[]): void {
+    this.ingredients.push(...ingredients);
+
+    this.ingredientsChanged.emit(this.ingredients.slice());
   }
 }
