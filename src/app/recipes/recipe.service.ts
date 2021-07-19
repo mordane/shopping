@@ -1,7 +1,7 @@
-import { EventEmitter, Injectable } from "@angular/core";
-import { Ingredient } from "../shared/ingredients.model";
-import { ShoppingListService } from "../shopping-list/shopping-list.service";
-import { Recipe } from "./recipe.model";
+import { EventEmitter, Injectable } from '@angular/core';
+import { Ingredient } from '../shared/ingredients.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import { Recipe } from './recipe.model';
 
 @Injectable({providedIn: 'root'})
 export class RecipeService {
@@ -23,9 +23,20 @@ export class RecipeService {
         new Ingredient('Buns', 2),
         new Ingredient('Meat', 1)
       ]),
-    new Recipe('A Test Recipe', 'A test', 'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg', []),
-    new Recipe('Another Recipe', 'Recipe description', 'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg', []),
-    new Recipe('Veggie Fritters', 'These veggie fritters with corn, chickpeas, and bell pepper are super easy to make, they are vegan', 'https://elavegan.com/wp-content/uploads/2019/02/vegan-veggie-fritters-with-corn-pepper-gluten-free-recipe-on-a-plate.jpg', [])
+    new Recipe('A Test Recipe', 'A test', 'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg', [
+      new Ingredient('Meat', 1),
+      new Ingredient('Cheese', 1)
+    ]),
+    new Recipe('Another Recipe', 'Recipe description', 'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg', [
+      new Ingredient('Meat', 1),
+      new Ingredient('Broccoli', 2)
+    ]),
+    new Recipe('Veggie Fritters', 'These veggie fritters with corn, chickpeas, and bell pepper are super easy to make, they are vegan',
+           'https://elavegan.com/wp-content/uploads/2019/02/vegan-veggie-fritters-with-corn-pepper-gluten-free-recipe-on-a-plate.jpg', [
+            new Ingredient('Meat', 2),
+            new Ingredient('Flour', 1),
+            new Ingredient('Milk', 1)
+          ])
   ];
 
   constructor(private shoppingListService: ShoppingListService) {}
